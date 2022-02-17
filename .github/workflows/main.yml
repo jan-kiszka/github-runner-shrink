@@ -13,6 +13,11 @@ jobs:
         run: |
           sudo rm -rf /usr/local/*
           apt purge dotnet* google-chrome-stable temurin* google-cloud-sdk hhvm azure-cli llvm* libllvm* gcc* mongodb* powershell firefox
+      - name: test kas-container
+        run: |
+          wget https://raw.githubusercontent.com/siemens/kas/master/kas-container
+          chmod a+x kas-container
+          ./kas-container build --help
       - name: stats after clean
         run: |
           df -h
