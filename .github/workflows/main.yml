@@ -15,6 +15,7 @@ jobs:
         run: |
           sudo apt-get purge 'dotnet*' google-chrome-stable 'temurin*' google-cloud-sdk hhvm azure-cli 'mongodb*' powershell firefox chromium 'llvm*' 'libllvm*' 'adoptopenjdk*' 'mysql*' libgl1-mesa-dri apache2 'mono*'
           sudo rm -rf /usr/local/* /opt/hostedtoolcache /opt/pipx* /opt/az
+          docker rmi $(docker image ls -aq)
       - name: test kas-container
         run: |
           wget https://raw.githubusercontent.com/siemens/kas/master/kas-container
