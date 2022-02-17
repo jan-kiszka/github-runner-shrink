@@ -13,7 +13,7 @@ jobs:
           dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -100
       - name: clean
         run: |
-          sudo apt-get purge 'dotnet*' google-chrome-stable 'temurin*' google-cloud-sdk hhvm azure-cli 'mongodb*' powershell firefox chromium 'llvm*' 'libllvm*' 'adoptopenjdk*' 'mysql*' libgl1-mesa-dri apache2 'mono*'
+          sudo apt-get purge 'dotnet*' google-chrome-stable 'temurin*' google-cloud-sdk hhvm azure-cli 'mongodb*' powershell firefox chromium 'llvm*' 'libllvm*' 'adoptopenjdk*' 'mysql*' libgl1-mesa-dri apache2 'mono*' 'swift*'
           sudo rm -rf /usr/local/* /opt/hostedtoolcache /opt/pipx* /opt/az
           docker rmi $(docker image ls -aq)
       - name: test kas-container
