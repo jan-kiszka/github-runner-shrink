@@ -12,7 +12,7 @@ jobs:
       - name: clean
         run: |
           sudo rm -rf /usr/local/*
-          apt purge dotnet* google-chrome-stable temurin* google-cloud-sdk hhvm azure-cli
+          apt purge dotnet* google-chrome-stable temurin* google-cloud-sdk hhvm azure-cli llvm* libllvm* gcc* mongodb* powershell firefox
       - name: stats after clean
         run: |
           df -h
