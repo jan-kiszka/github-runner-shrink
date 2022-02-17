@@ -1,0 +1,18 @@
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: stats before clean
+        run: |
+          df -h
+          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -100
+      - name: clean
+        run: |
+          sudo rm -rf /usr/local/*
+          apt purge dotnet* google-chrome-stable temurin* google-cloud-sdk hhvm azure-cli
+      - name: stats after clean
+        run: |
+          df -h
