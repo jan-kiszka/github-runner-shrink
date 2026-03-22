@@ -12,13 +12,15 @@ jobs:
           df -h
           du -sh /opt/*
           du -sh /usr/local/*
+          du -sh /usr/share/*
           dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -100
           docker images
       - name: clean
         run: |
           sudo apt-get purge 'g++-*' 'clang-*' 'libclang*' 'temurin*' python3-botocore google-cloud-cli azure-cli snapd powershell firefox google-chrome-stable 'llvm*' 'libllvm*' 'mysql*' mesa-libgallium libgl1-mesa-dri apache2 microsoft-edge-stable 'gfortran*' default-jre-headless
-          sudo rm -rf /usr/local/* /opt/hostedtoolcache /opt/pipx* /opt/az /opt/google
-          docker rmi $(docker image ls -aq)
+          sudo apt-get autoremove -y
+          sudo rm -rf /usr/local/* /opt/hostedtoolcache /opt/pipx* /opt/az /opt/google /usr/share/dotnet
+          sudo docker image prune --all --force
       - name: test kas-container
         run: |
           wget https://raw.githubusercontent.com/siemens/kas/master/kas-container
